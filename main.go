@@ -28,6 +28,8 @@ func main() {
 		// Print the error to stderr before exiting so it's visible even
 		// when stdout is redirected (e.g. piped to a file).
 		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
+		// Use exit code 2 to distinguish helm command errors from other
+		// non-zero exits (e.g. a signal or OS-level failure uses code 1).
+		os.Exit(2)
 	}
 }
